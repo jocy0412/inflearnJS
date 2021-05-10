@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Object
+        - Property(프로퍼티)
+            {name: value} 형태
+
+        - name에 프로퍼티 이름/키를 작성
+            따옴표 작성 생략
+
+        - value에 JS에서 지원하는 타입 작성
+            number, string, boolean, object, function
+
+        - 오브젝트(Object)를 객체라고 부르지만
+            뉘앙스가 다르며, 강좌에서는 오브젝트로 표기
+            오브젝트와 객체 구분이 필요할 때, 별도 표기
+
+        - 프로퍼티 추가, 변경
+            var obj = {};
+            obj.abc = 123;
+            obj 오브젝트에 프로퍼티 이름으로
+            abc가 없으면 abc:123이 추가되고
+            abc가 있으면 프로퍼티 값이 123으로 변경됨
+        - 작성 방법
+            점(.)과 프로퍼티 이름 사용
+            대괄호 사용: obj["abc"]
+            abc 변수 이름 작성: obj[abc]
+
+        - Object 프로퍼티 열거 - 프로퍼티를 읽는 것
+            값 추출 방법
+                - 오브젝트에서 프로퍼티 값 추출
+                var obj = {book:"책"}
+                var value = obj.book;
+                console.log(value); // 책
+
+                - obj 오브젝트에 프로퍼티 이름인 book이 없으면 undefined 반환
+                console.log(obj["sport"]); // undefined
+
+                - for in
+                    - 오브젝트에서 프로퍼티 열거 (처음부터 끝까지 읽음)
+                    - 형태:
+                        for (변수 in 오브젝트) 문장;
+                        for (표현식 in 오브젝트) 문장;
+
+                    - for (var item in sports){코드}
+                        - 프로퍼티 이름이 item에 설정
+                        - sports[item]으로 프로퍼티 값을 구함
+                        - 프로퍼티를 작성한 순서대로 읽혀진다는 것을 보장하지 않음 (ES3)
+                        - 프로퍼티를 작성한 순서대로 읽혀짐 (ES5)
+
+
+
+</body>
+</html>

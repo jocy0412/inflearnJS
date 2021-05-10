@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    자바스크립트
+
+
+    - defer 속성
+    defer는 body까지 렌더링이 다된 상태에서 script를 실행
+    ex) <script src="hellow.js" defer> </script>
+
+    - 문장(Statement)
+        - JS 코드 실행단위
+        - 세미콜론(;)까지 하나의 문장
+        - 들여쓰기: 일반적으로 4칸, 2칸
+
+    - 변수(Variable)
+        - 형태: var book = "책";
+        - 값을 저장하고 저장된 값을 재사용
+        - 다수로 작성시 콤마로 구분하고 줄을 바꾸어서 작성
+            var book = "책",
+                point = 123;
+
+        - 작명시 의미를 부여하여 변수 이름 작명, 시맨틱(Semantic)이라고도 함
+
+    정수와 실수
+
+        - 정수
+            - 소수가 없는 숫자
+
+        - 실수
+            - 소수를 가진 숫자 숫자
+
+        - js는 정수, 실수를 구분하지 않음
+            - 1, 1., 1.0 모두 1.0으로 간주, 단 표시는 1로 표시
+
+        - JS의 정수와 실수의 숫자 처리 (IEEE(전기 전자 기술자 협회)의 IEEE 754 표준에 의해서 처리)
+            - 정수와 실수를 구분하지 않음
+            - 64비트 부동 소수점 처리
+            - 부동 소수점 처리란 123을 123.0으로 처리
+            - 정수와 실수를 구분하는 언어에서는 실수(0.12) 와 정수(5)를 더할 수 없음
+            - 정수를 실수로 변환해서 사용해야 함
+            - 그러나 JS는 정수와 실수를 구분하지 않음
+
+        - 상수
+            - 변경할 수 없는 값
+            - 상수 변수
+                상수가 설정된 변수
+                JS는 변수의 값을 변경할 수 있으므로 상수 변수는 선언적 의미
+            - 상수 변수 표기 방법
+                코딩 관례로 영문 대문자 사용
+                var ONE = 1;
+                상수로 사용한다는 시멘틱 선언
+            - JS가 제공하는 상숫값은 변경 불가
+                MAX_VALUE, MIN_VALUE 등
+
+        - 진수
+            - 10진수: 123
+            - 16진수
+                0xFF: 255
+                1번째에 숫자 0 작성
+                2번째에 영문자 x 작성
+                3번째 이후 0 ~ f 작성
+                대소문자 구분하지 않음
+
+                console.log(0xf); // 15
+                console.log(0xff); // 255 (16*15 + 15)
+                console.log(0xfff); // 4095 (16*16*15 + (16*15) + 15)
+
+            - 8진수
+                ES3에서 폐지, ES6 재정의
+                1번째에 숫자 0 작성
+                2번째에 영문자 O 작성
+                3번째에 0 ~ 7
+
+            - 2진수 ES6에서 특별한 방법 제공
+
+
+    데이터 타입(자료형)
+
+        - 데이터 타입 형태
+            숫자 타입: var value = 123;
+            문자 타입: var value = "sports";
+
+        - typeof 연산자
+            데이터(값) 타입 반환
+            typeof value에 데이터를 작성
+
+            var point = 123;
+            console.log(typeof point); // number
+            var book = "책";
+            console.log(typeof point); // string
+
+        - 키워드
+            특별한 기능을 가진 단어
+            ex) typeof
+
+        - 데이터는 타입을 가짐
+            JS는 데이터 를 기준으로 타입을 결정
+            타입을 먼저 선언하고 타입에 맞는 데이터를 할당하지 않음
+
+        - 데이터 타입 분류
+            - 스펙(문서) 타입
+                언어 알고리즘을 위한 타입으로 JS 프로그램에서 사용 불가
+                Reference, List, Completion, Property Descriptor, Data Block, Lexical Environment, Lexcical Record 등
+
+            - 언어 타입
+                Undefined, Null, Boolean, String, Number, Object (6가지)
+
+                Object는 프로퍼티 집합
+                Object 형태
+                    {name: value}
+                Property(프로퍼티)
+                    name과 value 하나를 지칭
+
+    Number 타입
+        - 부호(+, -)를 가진 값
+
+        - 숫자 값 범위
+            18,437,736,874,454,810,627 (2의 64승 - 2의 53승 + 3)
+
+        - Number 타입의 특수한 3개의 값 (NaN, Infinity, -Infinity)
+            Not-a-Number, 양수 무한대, 음수 무한대
+
+    String 타입
+        - 문자 타입
+            - 값을 "" 또는 '' 사이에 작성
+            - 최대 문자수: 2의 53승 - 1
+
+        - 큰 따옴표와 작은 따옴표를 같이 사용할 때
+            따옴표 작성 방법
+
+        - 따옴표에 숫자를 작성하면 문자 타입이 됩니다.
+
+    Undefined 타입
+        - Undefined(대문자) 타입
+            값: undefined(소문자)
+        - 변수의 디폴트 값이 undefined
+            var point;
+            변수를 선언만 한 것으로 undefined가 초깃값으로 설정됨
+            변수가 이름과 값을 갖는 구조를 맞추기 위한 것
+            변수에 값을 할당하지 않은 것을 나타내는 시맨틱
+        - 변수에 undefined 할당 가능, 그러나 값이 초기값인지 할당한 것인지 구분이 되지 않음으로 null을 사용
+
+    null 타입
+        - Null(대문자) 타입
+            값: null(소문자)
+
+        - null과 undefined의 차이
+            undefined는 단지 변수만 선언
+            null을 할당해야 값이 null이 됨
+            의도적으로 값을 할당한 것으로 코드를 수행한 것이 됨
+
+    Boolean 타입
+        값: true, false
+
+    Object 타입
+        - Object 형태: {name: value}
+        - property: name과 value 하나를 지칭
+        - Object는 프로퍼티의 집합
+
+    타입 정리
+        JS의 기본 데이터 타입을 Primitive 타입이라고 합니다.
+
+        log(typeof {book: "책"}); // object
+        log(typeof null); // object
+
+        null을 데이터 타입도 object로 나온다. object는 프로퍼티(키, 값을 가짐)라는 말이다.
+        ES6에서 개선됨
+
+
+    연산자(Operator)
+        - 연산의 사전적 의미
+            규칙에 따라 계산하여 값을 구함
+        - 연산자 형태(Operator)
+        +, -, *, /, %
+        >, >=, <, <=
+        ==, !=, ===, !==
+        콤마, typeof, delete, void
+        instanceof , in, new 등
+
+    표현식(Expression)
+        - 표현식의 형태
+            - 1 + 2
+            - var total = 1 + 2;
+            - var value = total / (2 + 3);
+
+            표현식을 평가하면 결과가 반환되며 이를 평가 결과라고 합니다.
+            JS는 표현식의 연결이다.
+
+    할당 연산자
+        - 단일 할당 연산자
+            = 하나만 사용
+        - 복합 할당 연산자
+            = 앞에 연산자 작성
+            = 앞을 연산한 후 할당
+
+            +=, -=, *=, /=, %=
+            <<= , >>=
+            >>>=, &=, ^=, |=
+
+    산술 연산자 (+)
+        (+) 연산자
+            - 더하기(+) 양쪽의 표현식을 평가하고 평가결과를 더함
+            - 평가 결과 연결, 한 쪽이라도 숫자가 아니면 연결
+                (다른 연산자는 숫자로 변환하고 연산하지만 더하기는 연결함)
+            - 왼쪽에서 오른쪽으로 연산
+
+    숫자로 변환
+        - 연산하기 전에 우선 숫자로 변환
+            값 타입 : 변환 값
+            Undefined : NaN
+            Null : +0
+            Boolean : true:1, false:0
+            Number : 변환 전/후 같음
+            String 값이 숫자이면 숫자로 연산, 단 더하기(+)는 연결
+
+    산술 연산자(-, *, /, %)
+
+    (-) 연산자
+        - 왼쪽 표현식 평가 결과에서 오른쪽 표현식 평가 결과를 뺍니다.
+        - String 타입이지만, 값이 숫자이면 Number 타입으로 변환하여 계산
+        console.log("135" - 2); // 133
+
+    * 연산자
+        - 왼쪽 표현식 평가 결과와 오른쪽 표현식 평가 결과를 곱합니다.
+        - 숫자 값으로 변환할 수 있으면 변환하여 곱합니다.
+        - NaN 반환
+            양쪽의 평가 결과가 하나라도 숫자가 아닐 때
+
+        - 소수 값이 생기는 경우 처리
+
+        숫
+
+    / 연산자
+        - 왼쪽 표현식 평가결과를 오른쪽 표현식 평가 결과로 나눈다.
+        - NaN 반환
+            양쪽의 평가 결과가 하나라도 숫자가 아닐 때
+            분모, 분자 모두 0일 때
+        - 분모, 분자가 0 일 때
+            분모가 0이면 Infinity 반환
+            분자가 0이면 0 반환
+
+
+    % 연산자
+        왼쪽 표현식 평가 결과를 오른쪽 표현식 평가 결과로 나누어 나머지를 구합니다.
+
+
+    단항 + 연산자
+        값을 Number 타입으로 변환
+
+    단항 - 연산자
+        값을 Number 타입으로 변환
+        값의 부호를 바꿈 +는 -로 -는 +로
+        연산할 때만 바꿈 원래 값은 바뀌지 않음
+
+
+    후치, 전치 , 논리 NOT 연산자
+
+        - 후치 ++ 연산자
+            형태: value++
+
+            값을 자동으로 1 증가시킴
+            문장을 수행한 후에 1 증가
+            즉 세미콜론(;) 다음에서 증가
+
+        - 전치 ++ 연산자
+            형태: ++value
+
+            값을 자동으로 1 증가 시킴
+            문장 안에서 1 증가
+            표현식을 평가하기 전에 1 증가, 표현식에서 증가된 값을 사용
+
+        - ! 연산자
+            - 논리 NOT 연산자
+                - 형태: !value
+            - 표현식 평가 결과를 true, false로 변환한 후
+            true이면 false를,
+            false이면 true를 반환
+
+            -원래 값은 바뀌지 않으며 사용할 때만 변환
+
+        - 관계 연산자
+            <, >, <=, >=, instanceof, in
+
+        > 연산자
+            - 부등호: Greater-than
+            - 양쪽이 Number 타입일 때
+                왼쪽이 오른쪽 보다 크면 true 반환 아니면 false
+
+            - String 타입 비교
+                한쪽이 string 타입이면 false
+                양쪽이 string 타입이면 유니코드 사전 순서로 비교
+                문자 하나씩 비교
+            - <, <=, >= 는 비교 기준만 다름
+
+    동등, 부등, 일치, 불일치 연산자
+
+        == 동등 연산자
+
+            - 왼쪽과 오른쪽 값이 같으면 true, 다르면 false
+
+            - 값 타입은 비교하지 않음, 1과 "1"이 같음
+
+        != 연산자
+            - 부등 연산자
+            - 왼쪽과 오른쪽이 값이 다르면 true 같으면 false
+            - a != b와 !(a == b)가 같음
+
+        === 연산자
+            - 일치 연산자
+            - 왼쪽과 오른쪽의 값과 타입이 모두 같으면 true, 값 또는 타입이 다르면 false
+            - 1 === 1 // true, 1 === "1" // false
+
+        !== 연산자
+            - 불일치 연산자
+            - 값 또는 타입이 다르면 true, true가 아니면 false
+
+    콤마, 그룹핑, 논리 연산자
+
+        () 연산자
+            - 그룹핑 연산자
+            - 소괄호 () 안의 표현식을 먼저 평가
+                평가한 값을 반환
+
+
+        - || 연산자
+            논리 OR 연산자
+            (ex1) 왼쪽 결과가 true이면 오른쪽은 비교하지 않음
+            (ex2) 표현식의 평가 결과가 하나라도 true이면 true 아니면 false
+            (ex3,4) 마지막까지 비교하였는데 모두가 false이면 false가 아니라 마지막 변숫값 반환
+
+                ex1) var value, zero = 0, two = 2;
+                    console.log(two || value || zero ) 에 대한 값은 2
+
+                ex2) var value, zero = 0, two = 2;
+                    console.log(zero || value || two) 에 대한 값은 2
+
+                ex3) var value, zero = 0;
+                    console.log(value || zero ) 에 대한 값은 0
+
+                ex4) var value, zero = 0;
+                    console.log(zero || value) 에 대한 값은 undefined
+
+        - && 연산자
+            표현식의 평가 결과가 모두 true이면 true 아니면 false
+            왼쪽 결과가 false이면 오른족은 비교하지 않음
+
+        조건 연산자는 (3항 연산자라고도 함)
+
+            - 기호: exp ? exp-1 : exp-2
+            - exp 위치의 표현식을 먼저 평가
+            - true 이면 exp-1의 결과 false 이면 exp-2의 결과 반환
+
+
+    문장(Statement)
+        - if
+            - if문의 구성은: if (식) 문
+            - if () {} 옵셔널 문장, 선택적이다.
+            - if () else {} 멘데토리 문장, 필수적이다, 도망갈 수 없다
+
+            ()의 기능
+            - 1. 우선순위 연산자,
+            - 2. 제어문에 들어가는 형식 기호
+            - 3. 함수를 호출 할때 호출식 연산자
+
+        - debugger
+            - 브라우저의 개발자 도구 창이 열려 있을 때 debugger 위치에서 실행 멈춤
+            - 열려있지 않으면 멈추지 않음
+            - ES5 부터 지원
+
+        - while
+            - 형태: while(표현식) 문장
+            - 표현식의 평가 결과가 false 될 때까지
+                - 문장을 반복하여 실행
+                - 반복이 종료되는 조건 필요
+
+                    var k = 1;
+                    while(k < 3){
+                        console.log(k);
+                        k++
+                    }
+                    // 1, 2
+
+        - do while
+            - 형태: do 문장 while (표현식)
+            - 처리 방법은 while 문과 같음
+                - 단, do 문을 먼저 실행
+            - 평가 결과가 true 이면 do 문의 블록을 다시 실행 false이면 while 문의 블록을 실행
+
+        - for
+            - 형태: for (초기값opt; 비교opt; 증감opt) 문장
+            - 2번째의 비교 표현식의 평가 결과가 true인 동안 문장을 반복 실행
+            - 형태에서 opt는 생략가능
+                - 증감 생략
+                    for (var k = 0; k < 3;){
+                        console.log(k)
+                        k++;
+                    }
+                - 초기값 증감 생략
+                    var k = 0;
+                    for (; k < 3;){
+                        console.log(k)
+                        k++;
+                    }
+                - 비교와 증감 생략 (가독성, 직관성이 떨어짐)
+                    for (var k = 0; ;){
+                        console.log(k)
+                        k++;
+                        if (k > 2){
+                            // for() 문 종료
+                            break;
+                        }
+                    }
+                - 모두 생략 (가독성, 직관성이 떨이짐)
+                    var k = 0
+                    for (;;){
+                        console.log(k)
+                        if (k > 2){
+                            // for() 문 종료
+                            break;
+                        }
+                        k++;
+                    }
+
+    break, continue
+        - break
+            - 형태:
+            break;
+            break 식별자;
+
+            - 반복문 종료
+
+            - break 끝에 세미콜론을 자동으로 첨부
+
+            - for, for~in, while, do ~ while, switch 에서 사용
+
+
+        - continue
+            - 형태:
+            continue;
+            continue 식별자;
+
+            - 반복문 내부에서 continue를 만나면 반복문 처음으로 분기
+            - for, for~in, while, do ~ while 에서 사용
+
+    switch, try-catch, strict
+
+        - switch
+            - 형태:
+            switch (표현식) {
+                case 표현식: 문장 리스트 opt
+                default 표현식: 문장 리스트 opt
+            };
+            - switch 표현식의 평가 값과 일치하는 case 문 수행
+            - break 사용하지 않으면 평가 값과 일치하는 case 이후로 게속 실행
+            - 일치하지 case가 없으면 default 수행
+            - OR(||) 형태
+                var exp = 3;
+                switch(exp){
+                    case 2:
+                    case 3:
+                        log(100);
+                };
+
+        - try-catch
+            - 형태:
+                1. try 블록 catch (식별자) 블록
+                2. try 블록 finally 블록
+                3. try 블록 catch (식별자) 블록 finally 블록
+
+            - try 문에서 예외 발생을 인식
+            - 예외가 발생하면 catch 블록 실행
+
+            - try-catch
+                var value;
+                try {
+                    value = ball;
+                } catch(error) {
+                    console.log("catch 실행");
+                }
+                // catch 실행
+                1. try 블록에서 ball을 value에 할당할 때 ball 변수가 없으므로 에러 발생
+                2. 에러가 발생하면 catch(error) 블록 실행 파라미터 error에 JS의 Error 오브젝트 설정
+                3. error는 식별자로 임의의 이름 사용 가능
+                4. 에러가 발생할 가능성이 있으면 반드시 try-catch를 사용해야 합니다.
+
+            - finally 블록은 예외 발생과 관계없이 실행
+                var sports;
+                try{
+                    sports = ball;
+                } catch(error) {
+                    console.log("catch 실행");
+                } finally {
+                    console.log("finally 실행");
+                }
+                // catch 실행 finally 실행
+
+            - throw
+                - 형태: throw 표현식;
+                - 명시적으로 예외를 발생시킴
+                - 예외가 발생하면 catch 실행
+
+        - strict 모드
+            - 형태: "use strict"
+            - 엄격하게 JS 문법 사용의 선언
+            - 작성한 위치부터 적용
+            - ES5부터 지원
+
+    함수
+        - function
+            - 특정 기능을 처리하는 자바스크립트 코드 묶음
+            - 함수 형태
+                - 함수의 이름을 정한 형태
+                function book(){
+                    var title = "JS 책";
+                }
+
+                - 함수를 변수에 할당한 형태
+                var point = function (one, two){
+                    var total = one + two;
+                    var bonus = total + 100;
+                };
+
+            - 파라미터
+                - 파라미터 5개정도가 권장 그이상은 다른 방법으로 처리 권장
+                - 매개 변수, 인자, 아규먼트로도 부름
+                - 강좌에서는 파라미터로 표기
+                - 파라미터 작성은 선택
+
+            - 함수 Body
+                - 중괄호{} 안에 작섣한 코드
+                - 함수 코드 ,소스 텍스트로도 부름
+                - 강좌에서는 함수 코드로 표기
+                - 함수 코드 작성은 선택
+
+            - 함수 이름 규칙
+                - 첫 문자
+                    영문자,$, 언더바(_)는 사용가능
+                    숫자, &, *, @, + 는 사용 불가
+                - 함수 이름 작명 권장
+                    함수 코드를 읽지 않더라도 함수 이름과 파라미터로 기능을 알 수 있게
+                    시맨틱(의미, 뜻)을 부여하여 작명
+
+            - 함수 이름 관례
+                - calculatePoint()처럼 동사로 시작
+                - 2개 이상의 단어를 사용할 때
+                    두번째 단어부터 명사 사용
+                    명사의 첫 문자를 대문자로 사용
+                    CamelCase 형태라고 부름
+                - 동사 + 명사 형태로 동적인 모습
+                    강좌에서는 설명 편리를 위해 간단하게 작성
+
+            - 함수 호출
+                - 함수는 호출되어야 실행됩니다.
+                - 호출받는 함수
+                    함수가 호출되었을 때 실행되는 함수
+                    함수라고 하면 호출받는 함수를 지칭
+                - 파라미터
+                    호출한 함수에서 넘겨준 값을 받음
+                    소괄호() 안에 파라미터 이름 작성
+            - 호출된 함수 형태
+                - setValue() 형태로 호출
+                    함수 이름과 소괄호()를 작성
+                    setValue만 작성하면 호출되지 않음
+                - 파라미터
+                    호출된 함수에 넘겨줄 값 작성
+                    setValue(10, 20)처럼 소괄호() 안에 작성
+                    JS에서 지원하는 타입 작성
+                    콤마(,)로 구분하여 다수 작성 가능
+
+            - 라이프 사이클
+                함수가 호출되는 일련의 과정
+
+        - return
+            - 형태: return 표현식 opt;
+            - 표현식의 평가 결과 반환
+            - return 또는 표현식을 작성하지 않으면 undefined 반환
+            - return과 표현식을 한 줄에 작성
+
+    주석 작성의 궁극적인 목적
+        - 코드가 목적을 달성하기 위한 기능, 시나리오 등을 생각하고 정리하는 것
+        - 이것을 문법에 맞추어 작성한 것이 코드
+        - 코드를 작성하기 전에 우선 먼저 정리한 생각을 주석으로 작성
+        - 어렵지만 처음 배울 때부터 습관화
+        - 주석 작성 기준
+            코드의 목적, 결과가 미치는 영향을 작성
+            다른 사람이 알 수 있도록 자세하게 작성
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

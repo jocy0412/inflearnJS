@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Function 오브젝트
+
+    new Function()
+        - Function 인스턴스 생성
+        - 파라미터에 문자열로 함수의 파라미터와 함수 코드 작성
+            var obj = new Function("book", "return book;");
+            obj("JS 책");
+        - 파라미터 수에 따라 인스턴스 생성 기준이 다름
+
+            -파라미터 2개 이상 작성
+                - 마지막 파라미터에 함수에서 실행할 함수 코드 작성
+                - 마지막을 제외한 파라미터에 이름 작성
+
+                var obj = new Function("one","two","return one + two;");
+                console.log(obj(100, 200)); // 300
+
+            -파라미터 하나 작성
+                - 함수에서 실행할 함수 코드 작성
+                - 파라미터가 없을 때 사용
+                var obj = new Function("return 1 + 2;");
+                console.log(obj()); // 3
+
+            -파라미터 작성하지 않으면
+                함수 코드가 없는 Function 인스턴스 생성
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

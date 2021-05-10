@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Object 오브젝트
+
+    자바스크립트의 오브젝트
+        - 빌트인 오브젝트 Built-in Object
+        - 네이티브 오브젝트 Native Object
+        - 호스트 오브젝트 Host Object
+
+    빌트인 오브젝트
+        - 사전에 만들어 놓은 오브젝트
+        - 빌트인 Number 오브젝트, 빌트인 String 오브젝트
+
+    네이티브 오브젝트
+        - JS 스펙에서 정의한 오브젝트
+        - 빌트인 오브젝트 포함
+        - JS 코드를 실행할 때 만드는 오브젝트
+            ex) Argument 오브젝트
+
+    호스트 오브젝트
+        - 빌트인, 네이티브 오브젝트를 제외한 오브젝트
+            window, DOM 오브젝트
+
+            var node = document.querySelector("div");
+            log(node.nodeName); // DIV
+
+            querySelector()는 DOM 함수
+            DOM에서 제공하는 오브젝트를 호스트(Host) 오브젝트라고 부릅니다.
+            마치 JS 함수처럼 DOM 함수를 사용
+
+        - JS는 호스트 환경에서 브라우저의 모든 요소 기술을 연결하고 융합하여 이를 제어
+
+    강좌에서는 오브젝트, 인스턴스를 구분
+        - 오브젝트는 new 연산자를 사용하지 않고 빌트인 오브젝트로 만든 오브젝트를 지칭
+
+        var abc = new Object();
+        var obj = {};
+            - new 연산자를 사용한 abc는 abc 인스턴스
+            - 사용하지 않은 obj는 obj 오브젝트
+
+        - 오브젝트를 번역하면 객체이지만 뉘앙스 차이가 있다.
+
+
+    빌트인 Object 프로퍼티 (ES3)
+        프로퍼티 리스트(ES3)
+        - new Object() - 파라미터 데이터 타입의 인스턴스 생성
+        - Object() - Object 인스턴스 생성
+
+        Object.prototype
+        - constructor - 생성자
+
+        아래의 6개의 함수는 빌트인 object로 인스턴스를 만드는 오브젝트에 모두 포함됨
+        - valueOf() - 프리미티브 값 반환
+        - hasOwnProperty() - 프로퍼티 소유 여부 반환
+            Own은 내가 만든 프로퍼티를 뜻함, 내가 만든건 수정 삭제가 가능함
+        - propertyIsEnumerable() - 프로퍼티 열거 여부 반환
+        - isPrototypeOf() - prototype 존재 여부 반환
+        - toString() - 문자열 반환
+        - toLocaleString() - 지역화 문자열로 변환
+
+        Ojbect 인스턴스 생성
+
+    new Object()
+        - 인스턴스를 생성하여 반환
+
+        - 파라미터의 데이터 타입에 따라 생성할 인스턴스 결정
+            [코드 1] Number 오브젝트 생성
+            var newNum =  new Number(123);
+            web.log(typeof newNum); // object
+            web.log(newNum + 100); // 223
+
+            [코드 2] Object 오브젝트 생성
+            var newObj =  new Object(123);
+            web.log(typeof newObj); // object
+            web.log(newObj + 100); // 223
+
+            new Object()는 파라미터 값 타입이 Number 타입이면 Number 인스턴스를 생성하고
+            String 타입이면 String 인스턴스를 생성
+
+        - 파라미터 값이 undefined, null이면 빈 Object 인스턴스 반환
+            var newObj - new Object();
+            web.log(newObj); // {}
+
+            new Object()처럼 파라미터를 작성하지 않으면 undefined를 작성한 것과 같으며
+            값을 갖지 않은 Object 인스턴스 생성
+
+    Object()
+        Object 인스턴스 생성
+            - 파라미터는 {name: value}형태
+                var obj = Object({name: "JS책"});
+                log(obj); // {name: JS책}
+
+                var emptyObj = Object();
+                log(emptyObj); // {}
+
+            - var abc = {};
+                var abc = Object()와 같음
+                즉, var abc = {}를 실행하면
+                Object 인스턴스가 생성됨
+
+            - {} 표기를 오브젝트 리터럴(Literal)이라고 부름
+
+            - 즉 Object()와 Object 리터럴{} 모두 Object 인스턴스를 생성
+
+    valueOf()
+        - data 위치에 작성한 Object 인스턴스의 프리미티브 값 반환
+
+
+    빌트인 오브젝트 구조
+        - 오브젝트 이름 (Object, String, Number..)
+
+        - 오브젝트.prototype
+            인스턴스 생성 가능 여부 기준 (Math 오브젝트에는 prototype이 없어서 인스턴스 생성 X)
+            프로퍼티를 연결하는 오브젝트
+
+        - 오브젝트.prototype.constructor
+            오브젝트의 생성자
+
+        - 오브젝트.prototype.method
+            메소드 이름과 함수 작성
+            prototype에 연결 되어있는 함수를 메소드라고 한다.
+
+    함수
+        - 오브젝트에 연결
+        - Object.create()
+    메소드
+        - 오브젝트의 prototype에 연결
+        - Object.prototype.toString()
+
+    함수와 메소드 호출
+
+        - 함수 호출 방법
+            - Object.create();
+                console.log(Object.create); // function create(){ [native code] }
+                console.log(Object.prototype.create); // undefined
+
+        - 메소드 호출 방법
+            - Object.prototype.toString();
+            - 또는 인스턴스를 생성하여 호출
+
+                console.log(Object.prototype.toString); // function toString() { [native code] }
+
+                1) Object.prototype에 toString이 존재하므로 함수 출력
+
+                var obj = {};
+                console.log(obj.toString) // function toString() { [native code] }
+
+                2) 인스턴스를 사용하여 메소드를 호출할 때는 prototype 을 작성하지 않음
+                3) prototype에 연결된 메소드로 인스턴스를 생성하기 때문
+
+
+        - 함수와 메소드를 구분해야 하는 이유
+            - JS 코드 작성 방법이 다르기 때문
+            - 함수는 파라미터에 값을 작성하고 메소드는 메소드 앞에 값을 작성
+                console.log(String.fromCharCode(49, 65));
+
+    프로퍼티 처리 메소드
+        hasOwnProperty()
+            인스턴스에 파라미터 이름이 존재하면 true 아니면 false 반환
+                var obj = {value: undefined};
+                var own = obj.hasOwnProperty)("value");
+                console.log(own); // true
+
+                값은 체크하지 않고 존재 여부만 체크하므로 true 반환
+
+            자신이 만든 것이 아니라 상속받은 프로퍼티이면 false 반환
+                var obj = {};
+                var own = obj.hasOwnProperty("hasOwnProperty");
+                console.log(own); // false
+
+                hawOwnProperty()는 자신이 만든 것이 아니라
+                빌트인 Object 오브젝트에 있는 것 {}를 실행하면
+                빌트인 Object 오브젝트의 prototype에 연결된 메소드를 사용하여
+                Object 인스턴스를 만드므로 자신이 만든 것이 아닙니다.
+
+        propertyIsEnumerable()
+            오브젝트에서 프로퍼티를 열거할 수 있으면 true를 반환 없으면 false를 반환
+
+            var obj == {sports: "축구"};
+            Object.defineProperty(obj, "sports", {
+                enumerable: false // 열거할 수 없음
+            });
+
+            console.log(obj.propertyIsEnumerable("sports")); // false
+
+            for (var name in obj) {
+                log(name); // 아무것도 출력되지 않음
+            }
+
+    빌트인 Object 특징
+        - 인스턴스를 만들 수 있는 모든 빌트인 오브젝트의 __proto__ 에
+            Object.prototype의 6개 메소드가 설정됨
+
+        - 따라서 빌트인 오브젝트로 만든 인스턴스에도 설정됨
+
+        - Object.prototype
+
+    isPrototypeOf()
+        - 파라미터에 작성한 오브젝트에 object 위치에 작성한 prototype이 존재하면 true 반환
+        존재하지 않으면 false 반환
+
+    toString()
+        - 인스턴스 타입을 문자열로 표시
+        - 오브젝트에 toString()이 있으면 toString()이 호출되고 없으면 Object의 toString()이 호출됨
+
+        var point = {book: "책"};
+        console.log(point.toString()); // [object Object]
+
+        var obj = new Number(123);
+        console.log(Object.prototype.toString.call(obj)); // [object Number]
+
+    toLocaleString()
+        지역화 문자 변환 메소드 대체 호출
+            Array, Number, Date 오브젝트의 toLocaleString() 메소드가 먼저 호출 됩니다.
+
+            console.log(1234.56.toLocaleString()); // 1,234.56
+
+            console.log("4567.89".toLocaleString()); // 4567.89
+            "4567.89"는 String 타입이며
+            String.prototype.toLocaleString()이 없으므로
+            Object.prototype.toLocaleString() 메소드가 호출됩니다.
+            Object의 toLocaleString()이 없으면 에러 발생을 방지하고 있는 것을 그대로 출력하기 위함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
