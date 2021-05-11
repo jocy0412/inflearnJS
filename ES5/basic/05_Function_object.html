@@ -74,7 +74,60 @@
 
 
     - 재귀 함수
-        - 함수안에서 자신을 부르는 함수를 재귀함수라고 한다.
+        - 함수 안에서 자신을 부르는 함수를 재귀함수라고 한다.
+        재귀함수는 함수를 빠져나가는 코드를 작성해야한다.
+        안그러면 무한 루프에 빠지게 된다.
+
+    함수를 두가지 형태로 사용하는 이유
+        함수 선언문이 먼저 Function 오브젝트를 만들고
+        함수 표현식으로 Function 오브젝트를 만든다.
+
+
+    함수 호출
+        call()
+            - 호출할 함수 이름.call(this로 참조할 오브젝트, 호출된 함수에서 반환한 값)
+            - getTotal.call(this, 10, 20);
+            - 첫번째 파라미터는 호출된 함수에서 this로 참조할 오브젝트
+
+            - 일반적으로 this 사용하고 다른 오브젝트도 작성 가능
+                var value = {one: 10, two: 20};
+                function getTotal(){
+                    return this.one + this.two;
+                };
+                var result = getTotal.call(value);
+                console.log(result); // 30
+
+        apply()
+            - getTotal.apply(this, [10, 20]);
+            - 파라미터 수가 유동적일 때 사용, 두번째 파라미터에 배열 사용
+            - call(), apply() 부가적인 목적
+                - 첫번째 파라미터에 호출된 함수에서 this로 참조할 오브젝트 사용
+                - 논리 전개는 단계적 설명이 필요하므로 중고급 강좌에서 다룹니다.
+
+        toString()
+            - 모든 빌트인 오브젝트에 toString()이 있지만 오브젝트마다 반환되는 형태가 다름
+            - function 오브젝트의 toString()은 함수 코드를 문자열로 반환
+                var getBook = function(){
+                    return 100 + 23;
+                };
+                var result = getBook.toString();
+                console.log(result); // function(){ return 100 + 23; }
+
+    Argument 오브젝트
+        아규먼트 오브젝트
+            - 함수가 홈출되어 함수 안으로 이동했을 때 arguments 이름으로 생성되는 오브젝트
+            - 함수를 호출한 곳에서 넘겨 준 값을 순서대로 저장
+            - 호출된 함수에 파라미터를 작성한 경우
+                - 호출된 함수의 파라미터에도 값을 설정하고 아규먼트 오브젝트에도 저장
+                    function getTotal(one){
+                        return one + arguments[1] + arguments[2];
+                    };
+                    var result = getTotal(10, 20, 30);
+                    console.log(result); // 60
+                - apply()와 아규먼트 오브젝트
+
+
+
 
 
 
