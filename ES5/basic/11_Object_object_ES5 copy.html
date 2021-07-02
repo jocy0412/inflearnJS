@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Object 오브젝트 (ES5)
+        ES5 Object 특징
+            - ES5 Object에 함수가 추가됨
+                - 메소드는 하나도 없음
+            - 빌트인 Object의 모든 메소드는
+                대부분의 빌트인 오브젝트에 첨부됨
+                빌트인으로 오브젝트를 생성하므로 연결이 많이 발생
+
+            - 함수는 첨부되지 않으므로
+                연결 부하를 줄일 수 있음
+
+        Object에 프로퍼티 추가
+
+            defineProperty()
+                - 대상 오브젝트에 프로퍼티 추가 또는 프로퍼티 속성 변경
+                - 프로퍼티마다 상태를 갖고 있음
+                    - 상태란? 변경/삭제/열거 가능 여부
+                    - 상태가 가능일 때만 처리할 수 있음
+                    - 프로퍼티를 추가할 때 상태 결정
+
+                    [코드]
+                    var obj = {}; // 프로퍼티 상태 변경/삭제/열거가 가능한 상태
+
+                    Object.defineProperty(obj, "book", {
+                        value: "JS북",
+                        enumerable: true
+                    });
+                    // 그러나 defindeProperty를 사용할 경우에는 프로퍼티 상태가 false, 데이터 보호를 위해서 사용
+
+                    console.log(obj); // {book: JS북}
+
+            defineProperties()
+                - 다수의 프로퍼티를 추가하거나 속성 변경
+                    - 함수 기능은 defineProperty()와 같음
+
+                [코드]
+                var obj = {};
+
+                Object.defineProperties(obj, {
+                    soccer : {
+                        value: "축구", enumerable: true
+                    },
+                    basketball : {
+                        value: "농구", enumerable: true
+                    },
+                });
+
+                for (var name in obj){
+                    console.log(name + ":" + obj[name]);
+                };
+                // soccer:축구
+                // basketball:농구
+
+        프로퍼티 디스크립터
+            - 프로퍼티 디스크립터
+                - 프로퍼티의 속성 이름과 속성 값을 정의
+            - 디스크립터 타입 분류
+                - 데이터 프로퍼티 디스크립터
+                - 악세스 프로퍼티 디스크립터
+                - 공용 프로퍼티 디스크립터
+                - 디스크립터 타입에 속한 속성만 같이 사용할 수 있음
+
+
+    getter, setter
+        get 속성
+            - getter
+                OOP 용어
+            - var result = obj.book; 코드를 만나면
+                - obj.book의 get 함수가 호출되며
+                - get 함수에서 "JS 책"을 반환
+                - 반환된 "JS 책"을 result 변수에 할당
+            - obj.book.get()처럼 함수로 호출하면 에러 발생
+        set 속성
+            - setter
+                OOP 용어
+            - var result = obj.book; 코드를 만나면
+                - obj.book의 set 함수가 호출하면서
+                - "JS 책"을 파라미터 값으로 넘겨줌
+                - data의 title 프로퍼티에 "JS책"을 설정
+
+            - obj.book; 코드를 만나면
+                - obj.book의 get 함수가 호출되며
+                - get 함수에서 data.title 값을 반환
+                - setter에서 설정한 "JS책"이 반환됨
+
+            [코드]
+            // 아래의 set, get 정의 방식은 ES5의 방식이다
+            var obj = {}, data = {};
+            Object.defineProperty(obj, "book", {
+                set: function(param){
+
+                },
+                get: function(){
+                    return data.title;
+                }
+            });
+            obj.book = "JS책";
+            console.log(obj.book;);
+
+    프로퍼티 추출
+        getPrototypeOf()
+            - 인스턴스(파라미터)의 prototype에 연결된 프로퍼티 반환
+            - setPrototypeOf()가 ES5 스펙에 없고 ES6에 있음
+
+            [코드]
+            function Book(point){
+                this.point = point;
+            };
+            Book.prototype.getPoint = function(){}
+            Book.prototype.setPoint = function(){}
+            var obj = new Book(100);
+
+            var result = Object.getPrototypeOf(obj);
+            for (var key in result){
+                console.log(key + ":" + result[key]);
+            };
+
+        getOwnPropertyNames()
+            - 오브젝트의 프로퍼티 이름을 배열로 반환
+            - 열거 가능 여부를 체크하지 않음
+            - 자신이 만든 프로퍼티가 대상
+
+        keys()
+            - 열거 가능 프로퍼티 이름 반환
+                - enumerable: true
+
+    프로퍼티 디스크립터 함수
+        getOwnPropertyDescriptor()
+            - 프로퍼티 디스크립터의 속성 이름, 값 반환
+                - 다른 오브젝트에서 받은 프로퍼티 제외
+
+        preventExtensions()
+            - 오브젝트에 프로퍼티 추가 금지 설정
+            - 프로퍼티 삭제, 변경은 가능
+            - 추가 금지를 설정한 후에는 추가 기능으로 변경 불가
+
+        seal()
+            - 오브젝트에 프로퍼티 추가, 삭제 금지 설정
+            - 추가 금지는 오브젝트 단위로 설정하고
+                삭제 금지는 프로퍼티 단위로 설정
+            - 추가 금지를 하더라도 변경은 가능
+
+        isSeal()
+            - 오브젝트에 프로퍼티 추가, 삭제 금지 여부 반환
+                - true : 불가, false: 가능
+
+        freeze()
+            - 오브젝트에 프로퍼티 추가, 삭제, 변경 금지 설정
+
+        isFrozen()
+            - 오브젝트에 프로퍼티 추가, 삭제, 변경 금지 여부 반환
+                - true : 불가, false: 가능
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
