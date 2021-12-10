@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            // 반값 항목 데이터
+            var halfData = {
+                week1: {
+                    0: { productCode: 1234, productName: "1주차 아이템1" },
+                    1: { productCode: 5678, productName: "1주차 아이템2" },
+                    2: { productCode: 1234, productName: "1주차 아이템3" },
+                    3: { productCode: 5678, productName: "1주차 아이템4" },
+                    4: { productCode: 1234, productName: "1주차 아이템5" },
+                    5: { productCode: 5678, productName: "1주차 아이템6" },
+                    6: { productCode: 1234, productName: "1주차 아이템7" },
+                    7: { productCode: 5678, productName: "1주차 아이템8" }
+                },
+                week2: {
+                    0: { productCode: 1234, productName: "2주차 아이템1" },
+                    1: { productCode: 5678, productName: "2주차 아이템2" },
+                    2: { productCode: 1234, productName: "2주차 아이템3" },
+                    3: { productCode: 5678, productName: "2주차 아이템4" },
+                    4: { productCode: 1234, productName: "2주차 아이템5" },
+                    5: { productCode: 5678, productName: "2주차 아이템6" },
+                    6: { productCode: 1234, productName: "2주차 아이템7" },
+                    7: { productCode: 5678, productName: "2주차 아이템8" }
+                },
+                week3: {
+                    0: { productCode: 1234, productName: "3주차 아이템1" },
+                    1: { productCode: 5678, productName: "3주차 아이템2" },
+                    2: { productCode: 1234, productName: "3주차 아이템3" },
+                    3: { productCode: 5678, productName: "3주차 아이템4" },
+                    4: { productCode: 1234, productName: "3주차 아이템5" },
+                    5: { productCode: 5678, productName: "3주차 아이템6" },
+                    6: { productCode: 1234, productName: "3주차 아이템7" },
+                    7: { productCode: 5678, productName: "3주차 아이템8" }
+                },
+                week4: {
+                    0: { productCode: 1234, productName: "4주차 아이템1" },
+                    1: { productCode: 5678, productName: "4주차 아이템2" },
+                    2: { productCode: 1234, productName: "4주차 아이템3" },
+                    3: { productCode: 5678, productName: "4주차 아이템4" },
+                    4: { productCode: 1234, productName: "4주차 아이템5" },
+                    5: { productCode: 5678, productName: "4주차 아이템6" },
+                    6: { productCode: 1234, productName: "4주차 아이템7" },
+                    7: { productCode: 5678, productName: "4주차 아이템8" }
+                }
+            };
+
+            console.log(halfData); // 전체 데이터 반환
+
+            var halfWeekKeys = Object.keys(halfData); // keys
+            console.log(halfWeekKeys); // ["week1", "week2", "week3", "week4"]
+            // console.log(halfWeekKeys[0]); // week1
+            // console.log(halfWeekKeys[1]); // week2
+            // console.log(halfWeekKeys[2]); // week3
+            // console.log(halfWeekKeys[3]); // week4
+
+            var halfKeys = Object.keys(halfData.week1);
+            console.log(halfKeys); // ["0", "1", "2", "3", "4", "5", "6", "7"]
+
+            for (var j = 0; j < halfWeekKeys.length ; j++) {
+                for (var i = 0; i < halfKeys.length; i++) {
+                    console.log(halfData[halfWeekKeys[j]][i].productCode);
+                    console.log(halfData[halfWeekKeys[j]][i].productName);
+                }
+            }
+
+            // for (var i = 0; i < halfKeys.length; i++) {
+            //     console.log(halfData[halfWeekKeys[0]][i].productCode);
+            //     console.log(halfData[halfWeekKeys[0]][i].productName);
+            // }
+            // for (var i = 0; i < halfKeys.length; i++) {
+            //     console.log(halfData[halfWeekKeys[1]][i].productCode);
+            //     console.log(halfData[halfWeekKeys[1]][i].productName);
+            // }
+            // for (var i = 0; i < halfKeys.length; i++) {
+            //     console.log(halfData[halfWeekKeys[2]][i].productCode);
+            //     console.log(halfData[halfWeekKeys[2]][i].productName);
+            // }
+            // for (var i = 0; i < halfKeys.length; i++) {
+            //     console.log(halfData[halfWeekKeys[3]][i].productCode);
+            //     console.log(halfData[halfWeekKeys[3]][i].productName);
+            // }
+
+
+    </script>
+</body>
+</html>

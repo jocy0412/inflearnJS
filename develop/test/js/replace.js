@@ -5,11 +5,11 @@ var linkHref = [];
 
 
 for(var i = 0; i < imgElement.length; i++){
-    // 경로 확인
-    // console.log(imgElement.eq(i).attr("src"));
-
     // 경로교체
     linkHref.push(imgElement.eq(i).attr("src").replace("week1","week2"));
+
+    // 경로 확인
+    console.log(imgElement.eq(i).attr("src"));
 
     // 교체된 경로 변경
     console.log(imgElement.eq(i).attr({"src":linkHref[i]}));
